@@ -31,11 +31,7 @@ jobs:
                 USERNAME: ${{ inputs.username }}
                 GH_PAT: ${{ secrets.gh_pat }}
               run: |
-                pwd
-                ls
                 cd emojistats
-                pwd
-                ls
                 chmod +x update-readme.sh
                 ./update-readme.sh
             
