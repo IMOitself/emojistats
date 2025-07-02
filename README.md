@@ -15,12 +15,12 @@
 
 <br>
 
-## Features
+## TODO
 
-- [ ] reusable workflow
+- [x] reusable workflow
+- [ ] auto edit README using emojis
 - [ ] get user's total contributions
 - [ ] get user's daily streak
-- [ ] auto edit README
 
 <br><br>
 
