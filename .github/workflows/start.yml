@@ -26,7 +26,7 @@ jobs:
                 pwd
                 ls emojistats
 
-            - name: run edit-readme.sh
+            - name: run update-readme.sh
               env:
                 USERNAME: ${{ inputs.username }}
                 GH_PAT: ${{ secrets.gh_pat }}
@@ -36,8 +36,8 @@ jobs:
                 cd emojistats
                 pwd
                 ls
-                chmod +x edit-readme.sh
-                ./edit-readme.sh
+                chmod +x update-readme.sh
+                ./update-readme.sh
             
             - name: remove emojistats repo
               run: |
