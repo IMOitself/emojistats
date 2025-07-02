@@ -1,0 +1,49 @@
+name: start emojistats
+
+on:
+  workflow_call:
+    inputs:
+        username:
+            required: true
+            type: string
+    secrets:
+        gh_pat:
+            required: true
+
+jobs:
+    update-readme:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: write
+        
+        steps:
+            - name: checkout caller's repo
+              uses: actions/checkout@v4
+        
+            - name: clone emojistats repo
+              run: |
+                git clone https://github.com/IMOitself/emojistats.git
+                pwd
+                ls emojistats
+
+            - name: run edit-readme.sh
+              env:
+                USERNAME: ${{ inputs.username }}
+                GH_PAT: ${{ secrets.gh_pat }}
+              run: |
+                cd emojistats
+                chmod +x edit-readme.sh
+                ./edit-readme.sh
+            
+            - name: remove emojistats repo
+              run: |
+                rm -rf emojistats
+            
+            - name: commit changes
+              uses: stefanzweifel/git-auto-commit-action@v5
+              with:
+                commit_message: "update README.md"
+                file_pattern: README.md
+                commit_user_name: "github-actions[bot]"
+                commit_user_email: "41898282+github-actions[bot]@users.noreply.github.com"
+                commit_author: "github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"
